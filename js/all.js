@@ -9,17 +9,29 @@ var regionBtn=document.querySelector('.hotRegion');
 
 //監聽
 regionSelect.addEventListener('change',update);
-//regionBtn.addEventListener('click',update);
+regionBtn.addEventListener('click',update);
 
 
-
+function allSpots(){
+	var str="";
+	for(i=0; i<20; i++){
+		var content='<li><div class="imgBox"><img src='+data[i].Picture1+'><h3>'
+		+data[i].Name+'</h3><h4 class="region">'+data[i].Zone+'</h4></div>'
+		+'<span class="openTime">'+data[i].Opentime+'</span><span class="address">'
+		+data[i].Add+'</span><span class="tel">'+data[i].Tel+
+		'</span><span class="ticket">'+data[i].Ticketinfo+'</span></li>'
+		str+=content;
+	}
+	list.innerHTML=str;
+}
 function update(e){
 	//組字串
+	e.preventDefault();
 	var str="";
-	//console.log(e.target.value) ;
-	regionTitle.textContent=e.target.value;
+	console.log(e.target.textContent) ;
+	regionTitle.textContent=e.target.value || e.target.textContent;
 	for(i=0; i<data.length; i++){
-		if(e.target.value==data[i].Zone){
+		if(e.target.value==data[i].Zone || e.target.textContent==data[i].Zone){
 			var content='<li><div class="imgBox"><img src='+data[i].Picture1+'><h3>'
 			+data[i].Name+'</h3><h4 class="region">'+data[i].Zone+'</h4></div>'
 			+'<span class="openTime">'+data[i].Opentime+'</span><span class="address">'
@@ -30,3 +42,4 @@ function update(e){
 	}
 	list.innerHTML=str;
 }
+allSpots();
