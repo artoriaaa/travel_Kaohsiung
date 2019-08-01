@@ -1,0 +1,266 @@
+/*css reset*/
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed,
+	figure, figcaption, footer, header, hgroup,
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+	  margin: 0;
+	  padding: 0;
+	  border: 0;
+	  font-size: 100%;
+	  font: inherit;
+	  vertical-align: baseline; }
+
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure,
+	footer, header, hgroup, menu, nav, section {
+	  display: block; }
+
+	body {
+	  line-height: 1; }
+
+	ol, ul {
+	  list-style: none; }
+
+	blockquote, q {
+	  quotes: none; }
+
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+	  content: '';
+	  content: none; }
+
+	table {
+	  border-collapse: collapse;
+	  border-spacing: 0; }
+
+	a {
+	  text-decoration: none; }
+
+	img {
+	  max-width: 100%;
+	  height: auto; }
+
+/*-------base 全域共通設定---------*/
+	* {
+	  box-sizing: border-box;
+	  -webkit-box-sizing: border-box; }
+
+	body{
+	 	font-family: '微軟正黑體';
+	  	color: #000;
+	}
+
+	h1{
+		font-size: 40px;
+		color: #FFFFFF;
+		letter-spacing: 3.89px;
+	}
+	h2{
+		font-size: 36px;
+		color: #8A82CC;
+		text-align: center;
+	}
+	
+
+	.max-width {
+	  width: 100%; 
+	}
+
+	.fixed-width {
+	  max-width: 795px;
+	  margin: 0 auto;
+	 
+	}
+	.display-block{
+		display: block;
+	}
+
+/*-------mixin 常用技巧-------*/
+	.clearfix::after {
+	  content: "";
+	  display: block;
+	  clear: both; 
+	}
+	.hide-text{
+		text-indent: -150%;
+		overflow: hidden;
+		white-space:nowrap;
+	}
+
+
+/*-------正文開始----------------*/
+/*header*/
+	.header{
+		height: 500px;
+
+
+		
+	}
+		.header h1{
+			margin-bottom: 96px;
+		}
+	.banner{
+		position: relative;
+		width: 1024px;
+		height: 380px;
+		margin: 0 auto;
+		background: url(../images/Hero.png) no-repeat;
+		background-size: cover;
+		text-align: center;
+		padding-top: 89px;
+		padding-bottom: 107px;
+	}
+	#regionSelect{
+		background: rgba(255,255,255,0.70);
+		border: 3px solid #FFFFFF;
+		border-radius: 3px;
+		padding: 10px 7px;
+		width: 452px;
+		margin: 0 auto 80px 0;
+	}
+		#regionSelect option{
+			font-family: 微軟正黑體;
+			font-size: 18px;
+			color: #000000;
+			line-height: 21px;
+			font-weight: bold;
+		}
+
+	ul.hotRegion{
+		/*position: absolute;*/
+		background: #fff;
+		box-shadow: 0 1px 3px 0 rgba(0,0,0,0.20);
+		border-radius: 5px;
+		width: 800px;
+		height: 112px;
+		padding: 18px 26px;
+		margin: 0 auto;
+		text-align: left;
+	}
+		.hotRegion span{
+			display: block;
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 14px;
+		}
+		.hotRegion li {
+			float: left;
+			margin-left: 25px;
+
+		}
+		.hotRegion li a{
+			display: block;
+			padding: 11px 35px;
+			color: #fff;
+			border-radius: 5px;
+			/*background: #353535;*/
+		}
+		.bg-purple{
+			background: #8A82CC;
+		}
+		.bg-salmon{
+			background: #FFA782;
+		}
+		.bg-yello{
+			background: #F5D105 ;
+		}
+		.bg-blue{
+			background: #559AC8;
+		}
+		.bg-pink{
+			background: #ff83b3;
+		}
+/*content*/
+	.content{
+		background: #f7f7f7;
+		padding-top: 75px;
+		padding-bottom: 40px;
+	}
+	.list{
+		width: 960px;
+		margin:24px auto 0 auto;
+	}
+	.list li{
+		width: 464px;
+		height: 273px;
+		background: #fff;
+		float: left;
+		margin-right: 8px;
+		margin-left: 8px;
+		margin-bottom: 36px;
+		padding-bottom: 6px;
+		position: relative;
+	}
+	
+	.imgBox{
+		position: relative;
+		width: 100%;
+		height: 155px;
+		overflow: hidden;
+		margin-bottom: 16px;
+		color: #fff;
+	}
+		.imgBox h3{
+			font-size: 24px;
+			position: absolute;
+			left: 22px;
+			bottom: 14px;
+		}
+		.imgBox img{
+			position: relative;
+			bottom: 48%;
+		}
+		.region{
+			font-size: 16px;
+			right: 22px;
+			bottom: 11px;
+			position: absolute;
+		}
+	.list li span{
+		display: block;
+		margin-bottom: 16px;
+		margin-left: 23px;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 28px;
+	
+	}
+		.openTime{
+			background: url(../images/icons_clock.png) no-repeat;
+			background-size: auto 16px;
+
+		}
+		.address{
+			background: url(../images/icons_pin.png) no-repeat;
+			background-size: auto 100%;
+
+		}
+		.tel{
+
+			background: url(../images/icons_phone.png) 1.5px no-repeat;
+			background-size: auto 100%;
+
+		}
+		.ticket{
+			background: url(../images/icons_tag.png) 1.5px no-repeat;
+			background-size: auto 100%;
+			position: absolute;
+			right: 22px;
+			bottom: 0px;
+		}
+/*footer*/
+	.footer{
+		background: #559AC8;
+		height: 90px;
+		padding: 24px 0;
+	}
+
