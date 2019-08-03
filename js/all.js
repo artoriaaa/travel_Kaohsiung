@@ -5,13 +5,16 @@ var regionSelect=document.getElementById('regionSelect');
 var list=document.querySelector('.list');
 var regionTitle=document.querySelector('.regionTitle');
 var regionBtn=document.querySelector('.hotRegion');
+var page=document.querySelector('.page');
+var prev=document.querySelector('.prev');
+var next=document.querySelector('.next');
 
 
 //監聽
 regionSelect.addEventListener('change',update);
 regionBtn.addEventListener('click',update);
 
-
+//初始顯示
 function allSpots(){
 	var str="";
 	for(i=0; i<20; i++){
@@ -23,17 +26,20 @@ function allSpots(){
 		str+=content;
 	}
 	list.innerHTML=str;
-	
-	
 }
-function update(e){
-	//組字串
-	e.preventDefault();
-	var str="";
-	var itemAry=[];
-	itemAry.splice(0,itemAry.length);
+var itemAry=[];
+var len;
+var showNum=8;
+var pageNum;
+var pageStr=""
 
+function update(e){
+	e.preventDefault();
+	itemAry.splice(0,itemAry.length);
 	regionTitle.textContent=e.target.value || e.target.textContent;
+	var str="";
+
+	//組字串、把符合的資料存到陣列
 	for(i=0; i<data.length; i++){
 		if(e.target.value==data[i].Zone || e.target.textContent==data[i].Zone){
 			var content='<li><div class="imgBox"><img src='+data[i].Picture1+'><h3>'
@@ -42,21 +48,53 @@ function update(e){
 			+data[i].Add+'</span><span class="tel">'+data[i].Tel+
 			'</span><span class="ticket">'+data[i].Ticketinfo+'</span></li>'
 			itemAry.push(content);
-			//str+=content;
 		}
 	}
-	console.log(itemAry.length);
-	if(itemAry.length<8){
-		for(i=0; i<itemAry.length; i++){
+
+	//渲染陣列的資料
+	len=itemAry.length;
+	pageNum =Math.ceil(len/showNum);
+	
+	if(len<showNum){
+		for(i=0; i<len; i++){
 			var item=itemAry[i];
 			str+=item;
 		}	
 	}else{
-		for(i=0; i<8 ; i++){
+		for(i=0; i<showNum; i++){
 			var item=itemAry[i];
 			str+=item;
 		}
 	}
 	list.innerHTML=str;
+	
+
+	//渲染出頁數
+	for(i=0; i<pageNum; i++){
+		var content=
+		'<li><a href="">'+(i+1)+'</a></li>';
+		pageStr+=content;
+	}
+	page.innerHTML= '<li class="prev"><a class="chPage" href="">< prev</a></li>'
+	+pageStr+'<li class="next"><a class="chPage" href="">next ></a></li>';
+	console.log('總共有'+len+'個項目'+' 共'+pageNum+'頁')
+	
+
+	
 }
 allSpots();
+
+page.addEventListener('click',showPage);
+//渲染此頁的項目
+	function showPage(e){
+		e.preventDefault();
+		if(e.target.nodeName!=='A'){return}
+
+		var currentPage= e.textContent;
+		console.log(currentPage);
+
+		for(i=showNum*(currentPage-1); i<(showNum*currentPage); i++){
+			var item=itemAry[i];
+			str+=item;
+		}
+	}
