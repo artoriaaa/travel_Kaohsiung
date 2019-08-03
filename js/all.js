@@ -39,23 +39,14 @@ function allSpots(){
 	len=itemAry.length;
 	pageNum =Math.ceil(len/showNum);
 	
-	//處理項目餘數
-	//如果餘數不懂於0
-	var remain=(len%showNum);
-	var parPageNum= parseInt(len/showNum);
 
-	if(remain!==0){
-		for(i=0; i<len; i++){
-			var item=itemAry[i];
-			str+=item;
-		}	
-		
-	}else{
-		for(i=0; i<showNum; i++){
-			var item=itemAry[i];
-			str+=item;
-		}
-	}
+
+	//渲染內容
+	for(i=0; i<showNum; i++){
+		var item=itemAry[i];
+		str+=item;
+	}	
+	
 	list.innerHTML=str;
 	pagebtn();
 }
@@ -123,16 +114,23 @@ function showPage(e){
 	var str="";
 	if(e.target.nodeName!=='A'){return}
 	var currentPage= e.target.textContent;
+	var currentPageL=parseInt(currentPage);
 	//渲染出這一頁的內容 用for的區間
-	//判斷餘數
 	var remain=(len%showNum);
 	var parPageNum= parseInt(len/showNum);
 	
-		for(i=showNum*(currentPage-1); i<(showNum*currentPage); i++){
+
+	//判斷是否最後一頁
+	if (remain!==0 && currentPageL==(len/showNum)+1){
+		for(i=showNum*(currentPageL); i<len; i++){
 			var item=itemAry[i];
 			str+=item;
 		}
-	
-	
+	}else{
+		for(i=showNum*(currentPageL-1); i<(showNum*currentPage); i++){
+			var item=itemAry[i];
+			str+=item;
+		}
+	}
 	list.innerHTML=str;
 }
