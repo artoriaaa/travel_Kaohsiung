@@ -117,9 +117,7 @@ function showPage(e){
 	var currentPageL=parseInt(currentPage);
 	//渲染出這一頁的內容 用for的區間
 	var remain=(len%showNum);
-	var parPageNum= parseInt(len/showNum);
 	
-
 	//判斷是否最後一頁
 	if (remain!==0 && currentPageL==(len/showNum)+1){
 		for(i=showNum*(currentPageL); i<len; i++){

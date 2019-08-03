@@ -111,17 +111,11 @@
 		height: 380px;
 		background-size: cover;
 		text-align: center;
+		padding-top: 89px;
+		padding-bottom: 107px;
 		/*background: #042764;*/
 		background: url(../images/hero_big.png) no-repeat;
 		background-size: cover;
-	}
-	.banner .fixed-width{
-		padding-top: 89px;
-		padding-bottom: 107px;
-		width: 1024px;
-		height: 380px;
-		/*background: url(../images/Hero.png) no-repeat;
-		background-size: cover;*/
 	}
 	#regionSelect{
 		background: rgba(255,255,255,0.70);
@@ -186,10 +180,9 @@
 	.line{
 		
 		max-width: 900px;
-		/*height: 1px;*/
 		margin: 0 auto;
 		border-top:1.5px dashed #559AC8 ;
-		margin-top: 133px;
+		margin-top: 50px;
 	}
 	.iconDown{
 		width: 24px;
