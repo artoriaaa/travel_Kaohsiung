@@ -13,26 +13,68 @@ var next=document.querySelector('.next');
 //監聽
 regionSelect.addEventListener('change',update);
 regionBtn.addEventListener('click',update);
+page.addEventListener('click',showPage);
+
+
+
+var itemAry=[];
+var len;
+var showNum=8;
+var pageNum;
+
+allSpots();
 
 //初始顯示
 function allSpots(){
 	var str="";
-	for(i=0; i<20; i++){
+	//組字串,存到陣列
+	for(i=0; i<data.length; i++){
 		var content='<li><div class="imgBox"><img src='+data[i].Picture1+'><h3>'
 		+data[i].Name+'</h3><h4 class="region">'+data[i].Zone+'</h4></div>'
 		+'<span class="openTime">'+data[i].Opentime+'</span><span class="address">'
 		+data[i].Add+'</span><span class="tel">'+data[i].Tel+
 		'</span><span class="ticket">'+data[i].Ticketinfo+'</span></li>'
-		str+=content;
+		itemAry.push(content);
+	}
+	len=itemAry.length;
+	pageNum =Math.ceil(len/showNum);
+	
+	//處理項目餘數
+	//如果餘數不懂於0
+	var remain=(len%showNum);
+	var parPageNum= parseInt(len/showNum);
+
+	if(remain!==0){
+		for(i=0; i<len; i++){
+			var item=itemAry[i];
+			str+=item;
+		}	
+		
+	}else{
+		for(i=0; i<showNum; i++){
+			var item=itemAry[i];
+			str+=item;
+		}
 	}
 	list.innerHTML=str;
+	pagebtn();
 }
-var itemAry=[];
-var len;
-var showNum=8;
-var pageNum;
-var pageStr=""
+//渲染出頁碼
+function pagebtn(){
+	var pageStr="";
+	len=itemAry.length;
+	pageNum =Math.ceil(len/showNum);
+	for(i=0; i<pageNum; i++){
+		var content=
+		'<li><a href="">'+(i+1)+'</a></li>';
+		pageStr+=content;
+	}
+	page.innerHTML= '<li class="prev"><a class="chPage" href="">< prev</a></li>'
+	+pageStr+'<li class="next"><a class="chPage" href="">next ></a></li>';
+	console.log('總共有'+len+'個項目'+' 共'+pageNum+'頁');
+}
 
+//區域按鈕或select
 function update(e){
 	e.preventDefault();
 	itemAry.splice(0,itemAry.length);
@@ -55,6 +97,8 @@ function update(e){
 	len=itemAry.length;
 	pageNum =Math.ceil(len/showNum);
 	
+	//處理餘數
+
 	if(len<showNum){
 		for(i=0; i<len; i++){
 			var item=itemAry[i];
@@ -67,34 +111,28 @@ function update(e){
 		}
 	}
 	list.innerHTML=str;
-	
 
-	//渲染出頁數
-	for(i=0; i<pageNum; i++){
-		var content=
-		'<li><a href="">'+(i+1)+'</a></li>';
-		pageStr+=content;
-	}
-	page.innerHTML= '<li class="prev"><a class="chPage" href="">< prev</a></li>'
-	+pageStr+'<li class="next"><a class="chPage" href="">next ></a></li>';
-	console.log('總共有'+len+'個項目'+' 共'+pageNum+'頁')
-	
-
-	
+	//頁碼更新
+	pagebtn();
 }
-allSpots();
 
-page.addEventListener('click',showPage);
-//渲染此頁的項目
-	function showPage(e){
-		e.preventDefault();
-		if(e.target.nodeName!=='A'){return}
 
-		var currentPage= e.textContent;
-		console.log(currentPage);
-
+//換頁功能
+function showPage(e){
+	e.preventDefault();
+	var str="";
+	if(e.target.nodeName!=='A'){return}
+	var currentPage= e.target.textContent;
+	//渲染出這一頁的內容 用for的區間
+	//判斷餘數
+	var remain=(len%showNum);
+	var parPageNum= parseInt(len/showNum);
+	
 		for(i=showNum*(currentPage-1); i<(showNum*currentPage); i++){
 			var item=itemAry[i];
 			str+=item;
 		}
-	}
+	
+	
+	list.innerHTML=str;
+}
