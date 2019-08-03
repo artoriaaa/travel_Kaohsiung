@@ -31,7 +31,7 @@ function update(e){
 	e.preventDefault();
 	var str="";
 	var itemAry=[];
-	//itemAry.splice(0,itemAry.length);
+	itemAry.splice(0,itemAry.length);
 
 	regionTitle.textContent=e.target.value || e.target.textContent;
 	for(i=0; i<data.length; i++){
@@ -42,10 +42,21 @@ function update(e){
 			+data[i].Add+'</span><span class="tel">'+data[i].Tel+
 			'</span><span class="ticket">'+data[i].Ticketinfo+'</span></li>'
 			itemAry.push(content);
-			str+=content;
+			//str+=content;
 		}
 	}
-	console.log(itemAry);
+	console.log(itemAry.length);
+	if(itemAry.length<8){
+		for(i=0; i<itemAry.length; i++){
+			var item=itemAry[i];
+			str+=item;
+		}	
+	}else{
+		for(i=0; i<8 ; i++){
+			var item=itemAry[i];
+			str+=item;
+		}
+	}
 	list.innerHTML=str;
 }
 allSpots();
