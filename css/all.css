@@ -111,15 +111,17 @@
 		height: 380px;
 		background-size: cover;
 		text-align: center;
-		background: #042764;
+		/*background: #042764;*/
+		background: url(../images/hero_big.png) no-repeat;
+		background-size: cover;
 	}
 	.banner .fixed-width{
 		padding-top: 89px;
 		padding-bottom: 107px;
 		width: 1024px;
 		height: 380px;
-		background: url(../images/Hero.png) no-repeat;
-		background-size: cover;
+		/*background: url(../images/Hero.png) no-repeat;
+		background-size: cover;*/
 	}
 	#regionSelect{
 		background: rgba(255,255,255,0.70);
@@ -277,6 +279,31 @@
 			right: 22px;
 			bottom: 0px;
 		}
+	.page{
+		width: 320px;
+		margin: 0 auto;
+	}
+	.page li {
+		float: left;
+	}
+	.page li:first-child {
+		margin-right:8px;
+	}
+	.page li:last-child {
+		margin-left:8px;
+	}
+	.page li a{
+		display: block;
+		margin-left: 4px;
+		margin-right: 4px;
+		text-align: center;
+		line-height: 24px;
+		width: 24px;
+		height: 24px;
+	}
+	.page .chPage{
+		width: 50px;
+	}
 /*footer*/
 	.footer{
 		background: #559AC8;

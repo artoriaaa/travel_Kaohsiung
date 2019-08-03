@@ -23,12 +23,16 @@ function allSpots(){
 		str+=content;
 	}
 	list.innerHTML=str;
+	
+	
 }
 function update(e){
 	//組字串
 	e.preventDefault();
 	var str="";
-	console.log(e.target.textContent) ;
+	var itemAry=[];
+	//itemAry.splice(0,itemAry.length);
+
 	regionTitle.textContent=e.target.value || e.target.textContent;
 	for(i=0; i<data.length; i++){
 		if(e.target.value==data[i].Zone || e.target.textContent==data[i].Zone){
@@ -37,9 +41,11 @@ function update(e){
 			+'<span class="openTime">'+data[i].Opentime+'</span><span class="address">'
 			+data[i].Add+'</span><span class="tel">'+data[i].Tel+
 			'</span><span class="ticket">'+data[i].Ticketinfo+'</span></li>'
+			itemAry.push(content);
 			str+=content;
 		}
 	}
+	console.log(itemAry);
 	list.innerHTML=str;
 }
 allSpots();
