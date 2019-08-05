@@ -4,8 +4,7 @@ var data= [{"Ticketinfo": "\u514d\u8cbb\u53c3\u89c0", "Zone": "\u4e09\u6c11\u534
 
 
 //DOM抓
-var body=document.querySelector('body');
-console.log(body);
+//var body=document.querySelector('body');
 var regionSelect=document.getElementById('regionSelect');
 var list=document.querySelector('.list');
 var regionTitle=document.querySelector('.regionTitle');
@@ -13,7 +12,6 @@ var regionBtn=document.querySelector('.hotRegion');
 var page=document.querySelector('.page');
 var prev=document.querySelector('.prev');
 var next=document.querySelector('.next');
-
 var line=document.querySelector('.line');
 var downIc=document.querySelector('.iconDown');
 //var card=document.querySelectorAll('.list li');
@@ -21,29 +19,33 @@ var downIc=document.querySelector('.iconDown');
 regionSelect.addEventListener('change',update);
 regionBtn.addEventListener('click',update);
 page.addEventListener('click',showPage);
-//downIc.addEventListener('click',stretchLine);
 
-/*function  stretchLine(){
-		line.classList.add('lineStretch');
-		
-}*/
 /*----------------------動畫-------------------*/
 	$(document).ready(function($) {
 		$('.line').addClass('lineStretch');
+		$('.regionTitle').delay(900).fadeIn(1500);
 		$('.list li').delay(900).fadeIn(1500);
 
+		$('body').animate({scrollTop:0}, 600);
 		//$('.list li').delay(900).slideDown(1500);//1200
 	});
 	
 	$.fn.animChange= function() { 
 		$('.list li').fadeIn(1500);
 	};
-
+	/*$.fn.scrollTop= function() { 
+		$('html body').animate({scrollTop:0}, 600);
+	};*/
 	function animChange(){
 		$.fn.animChange();
 	}
+	function scrollTop(){
+		$.fn.scrollTop();
+	}
+
 
 /*---------------------------------------------*/
+	
 
 var itemAry=[];
 var len;
@@ -54,9 +56,7 @@ allSpots();
 
 //初始顯示
 function allSpots(){
-	body.onload=function(){
-		body.scrollTo(0,0);
-	}
+	
 	var str="";
 	//組字串,存到陣列
 	for(i=0; i<data.length; i++){
@@ -80,6 +80,7 @@ function allSpots(){
 	
 	list.innerHTML=str;
 	//animStart(); 
+	
 	pagebtn();
 }
 //渲染出頁碼
@@ -121,8 +122,7 @@ function update(e){
 	len=itemAry.length;
 	pageNum =Math.ceil(len/showNum);
 	
-	//處理餘數
-
+	//如果數量不足一頁
 	if(len<showNum){
 		for(i=0; i<len; i++){
 			var item=itemAry[i];
@@ -140,23 +140,24 @@ function update(e){
 	pagebtn();
 }
 
-
 //換頁功能
 function showPage(e){
 	e.preventDefault();
+
+	if(e.target.nodeName!=='A'|| e.target.classList.contains('chPage')==true)
+	{return}
+	
 	var str="";
-	if(e.target.nodeName!=='A'){return}
 	var currentPage= e.target.textContent;
 	var currentPageL=parseInt(currentPage);
-	//渲染出這一頁的內容 用for的區間
 	var remain=(len%showNum);
-	
-	//判斷是否最後一頁
-	if (remain!==0 && currentPageL==(len/showNum)+1){
-		for(i=showNum*(currentPageL); i<len; i++){
+	//判斷是否最後一頁、for迴圈範圍渲染出這一頁的內容
+	if (remain!==0 && currentPageL==(parseInt(len/showNum))+1){
+		for(i=showNum*(currentPageL-1); i<len; i++){
 			var item=itemAry[i];
 			str+=item;
 		}
+		console.log('last page');
 	}else{
 		for(i=showNum*(currentPageL-1); i<(showNum*currentPage); i++){
 			var item=itemAry[i];
