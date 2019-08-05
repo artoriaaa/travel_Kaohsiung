@@ -9,8 +9,9 @@ var regionSelect=document.getElementById('regionSelect');
 var list=document.querySelector('.list');
 var regionTitle=document.querySelector('.regionTitle');
 var regionBtn=document.querySelector('.hotRegion');
-//var pageBox=document.querySelector('.pageBox');
 var page=document.querySelector('.page');
+var prev=document.querySelector('.prev');
+var next=document.querySelector('.next');
 var line=document.querySelector('.line');
 var downIc=document.querySelector('.iconDown');
 //var card=document.querySelectorAll('.list li');
@@ -18,10 +19,6 @@ var downIc=document.querySelector('.iconDown');
 regionSelect.addEventListener('change',update);
 regionBtn.addEventListener('click',update);
 page.addEventListener('click',showPage);
-
-
-//pageBox.addEventListener('click',changePage);
-
 
 /*----------------------動畫-------------------*/
 	$(document).ready(function($) {
@@ -96,12 +93,8 @@ function pagebtn(){
 		'<li><a href="">'+(i+1)+'</a></li>';
 		pageStr+=content;
 	}
-	pageBox.innerHTML= '<a class="prev chPage" href="">< prev</a>'+
-	'<ul class="page clearfix">'+pageStr+
-	'</ul><a class="next chPage" href="">next ></a>'
-
-	/*page.innerHTML= '<li class="prev"><a class="chPage" href="">< prev</a></li>'
-	+pageStr+'<li class="next"><a class="chPage" href="">next ></a></li>';*/
+	page.innerHTML= '<li class="prev"><a class="chPage" href="">< prev</a></li>'
+	+pageStr+'<li class="next"><a class="chPage" href="">next ></a></li>';
 	console.log('總共有'+len+'個項目'+' 共'+pageNum+'頁');
 }
 
@@ -146,19 +139,20 @@ function update(e){
 	//頁碼更新
 	pagebtn();
 }
-//var currentPage="1";
-//換頁功能
-function showPage(b){
-	e.preventDefault();
 
-	alert('dfd');
-	var str="";
-	var currentPage= b.target.textContent;
-	var currentPageL=parseInt(currentPage);
-	var remain=(len%showNum);
+//換頁功能
+function showPage(e){
+	e.preventDefault();
+	if(e.target.textContent=='< prev'){
+		alert('有1');
+	}
 	if(e.target.nodeName!=='A'|| e.target.classList.contains('chPage')==true)
 	{return}
 	
+	var str="";
+	var currentPage= e.target.textContent;
+	var currentPageL=parseInt(currentPage);
+	var remain=(len%showNum);
 	//判斷是否最後一頁、for迴圈範圍渲染出這一頁的內容
 	if (remain!==0 && currentPageL==(parseInt(len/showNum))+1){
 		for(i=showNum*(currentPageL-1); i<len; i++){
@@ -175,14 +169,7 @@ function showPage(b){
 	list.innerHTML=str;
 	animChange();
 }
-/*function changePage(e){
-	e.preventDefault();
-	//console.log();
-	if(e.target.classList.contains('chPage')==true){
-		console.log(currentPage);
-	}
-	
-}*/
+
 
 
 
