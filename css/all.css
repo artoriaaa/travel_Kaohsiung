@@ -117,7 +117,6 @@
 		background: url(../images/hero_big.png) no-repeat;
 		background-size: cover;
 	}
-
 	#regionSelect{
 		background: rgba(255,255,255,0.70);
 		border: 3px solid #FFFFFF;
@@ -125,12 +124,14 @@
 		padding: 10px 7px;
 		width: 452px;
 		margin: 0 auto 80px 0;
-		font-family: 微軟正黑體;
+	}
+		#regionSelect option{
+			font-family: 微軟正黑體;
 			font-size: 18px;
 			color: #000000;
 			line-height: 21px;
 			font-weight: bold;
-	}
+		}
 
 	ul.hotRegion{
 		/*position: absolute;*/
@@ -152,20 +153,14 @@
 		.hotRegion li {
 			float: left;
 			margin-left: 25px;
+
 		}
 		.hotRegion li a{
 			display: block;
 			padding: 11px 35px;
 			color: #fff;
 			border-radius: 5px;
-		}
-		.hotRegion li a:hover{
-			background: #00e3e3;
-			/*background: #00caca;*/
 			/*background: #353535;*/
-			box-shadow: 3px 7px 5px #c4e1ff,
-			0px 0px 4px rgba(255,255,255,.8) inset ;
-			
 		}
 		.bg-purple{
 			background: #8A82CC;
@@ -209,9 +204,6 @@
 
 		padding-top: 75px;
 		padding-bottom: 40px;
-	}
-	.regionTitle{
-		display: none;
 	}
 	.list{
 		width: 960px;

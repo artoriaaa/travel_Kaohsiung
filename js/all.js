@@ -9,7 +9,7 @@ var regionSelect=document.getElementById('regionSelect');
 var list=document.querySelector('.list');
 var regionTitle=document.querySelector('.regionTitle');
 var regionBtn=document.querySelector('.hotRegion');
-var pageBox=document.querySelector('.pageBox');
+//var pageBox=document.querySelector('.pageBox');
 var page=document.querySelector('.page');
 var line=document.querySelector('.line');
 var downIc=document.querySelector('.iconDown');
@@ -150,13 +150,12 @@ function update(e){
 //換頁功能
 function showPage(b){
 	e.preventDefault();
+
 	alert('dfd');
 	var str="";
 	var currentPage= b.target.textContent;
 	var currentPageL=parseInt(currentPage);
 	var remain=(len%showNum);
-	
-	console.log(e.target);
 	if(e.target.nodeName!=='A'|| e.target.classList.contains('chPage')==true)
 	{return}
 	
