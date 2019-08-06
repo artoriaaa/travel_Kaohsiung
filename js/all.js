@@ -143,9 +143,7 @@ function update(e){
 //換頁功能
 function showPage(e){
 	e.preventDefault();
-	if(e.target.textContent=='< prev'){
-		alert('有1');
-	}
+
 	if(e.target.nodeName!=='A'|| e.target.classList.contains('chPage')==true)
 	{return}
 	
@@ -159,7 +157,7 @@ function showPage(e){
 			var item=itemAry[i];
 			str+=item;
 		}
-		console.log('last page');
+		
 	}else{
 		for(i=showNum*(currentPageL-1); i<(showNum*currentPage); i++){
 			var item=itemAry[i];
